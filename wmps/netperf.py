@@ -11,6 +11,7 @@ allowed_keys = [
     'zerocopy',
     'verbose',
     'reverse',
+    'json_output',
     'serveroutput'
 ]
 
@@ -33,6 +34,8 @@ class IperfClient(Client):
             if k in allowed_keys:
                 self.valid_keys.append(k)
                 self.__setattr__(k, kwargs[k])
+            else:
+                print("key not valid: ", k)
 
 
     def do_test(self):
