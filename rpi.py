@@ -45,6 +45,12 @@ async def background_task(msg):
                 rtt = match.split("=")[1]
                 await sio.sleep(0.1)
                 await sio.emit('ping_event', {'data': rtt})
+    elif task == 3:
+        config = msg.get('data')
+        server = config.get('server')
+        reverse = config.get(int('reverse'))
+        client = IperfClient(server_hostname=server, reverse=reverse, json_output=True, serveroutput=True)
+        proc = iperf3.run(server)
 
 @sio.event
 async def run_task(msg):
