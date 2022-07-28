@@ -3,22 +3,20 @@ import logging
 '''
     returns a formatted logger object
 '''
-def getStreamLogger():
-    formatter = logging.Formatter("%(asctime)s   :   %(levelname)s\n\n%(message)s\n\n")
-    logger = logging.getLogger()
-    logger.setLevel(logging.ERROR)
+
+
+def Logger(logger):
+    formatter = logging.Formatter("%(asctime)s - %(name)s  :   %(levelname)s - %(message)s")
+    file_formatter = logging.Formatter("%(asctime)s - %(name)s  :   %(levelname)s - %(message)s")
+    logger.setLevel(logging.DEBUG)
+    fh = logging.FileHandler("/tmp/wpms.log")
+    fh.setLevel(logging.WARNING)
+    fh.setFormatter(file_formatter)
+
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
     ch.setFormatter(formatter)
-    logger.addHandler(ch)
-    return logger
 
-def getFileLogger(filename):
-    formatter = logging.Formatter("%(asctime)s   :   %(levelname)s\n\n%(message)s\n\n")
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
-    ch = logging.FileHandler(filename)
-    ch.setLevel(logging.DEBUG)
-    ch.setFormatter(formatter)
     logger.addHandler(ch)
+    logger.addHandler(fh)
     return logger

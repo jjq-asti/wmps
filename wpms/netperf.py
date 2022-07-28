@@ -15,6 +15,7 @@ allowed_keys = [
     'serveroutput'
 ]
 
+
 class IperfClient(Client):
     """Iperf3 object that accepts
     params: bandwidth- bits/sec
@@ -37,12 +38,8 @@ class IperfClient(Client):
             else:
                 print("key not valid: ", k)
 
-
     def do_test(self):
         return self.run()
-    
+
     def get_config(self):
         return self.valid_keys
-
-        
-

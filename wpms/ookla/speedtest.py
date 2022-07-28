@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 
-speedtest = Path('wmps') / 'ookla' / 'speedtest'
+speedtest = Path('wpms') / 'ookla' / 'speedtest'
 def run(server=None):
     """create speedtest and return process"""
     proc = subprocess.Popen([speedtest, '-f', 'jsonl'], 

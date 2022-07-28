@@ -3,7 +3,7 @@ function formatBytes(bytes, decimals = 2) {
 
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes/s', 'KBs', 'MB/s', 'GB/s'];
+    const sizes = ['Bytes', 'KBs', 'MB/s', 'GB/s'];
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
@@ -75,7 +75,7 @@ $(document).ready(function() {
         if (smoothie)
             smoothie.stop();
         chart.width = document.body.clientWidth;
-        smoothie = new SmoothieChart();
+        smoothie = new SmoothieChart({labels:{fontSize:36}});
         smoothie.streamTo(chart, 1000);
         time = new TimeSeries();
         smoothie.addTimeSeries(time, {
